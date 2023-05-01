@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<style>
+    /* Global styles */
+* {
+	box-sizing: border-box;
+	font-family: Arial, sans-serif;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #f1f1f1;
+}
+
+h1, h2 {
+	margin-top: 0;
+}
+
+section {
+	background-color: #fff;
+	padding: 20px;
+	margin: 20px 0;
+	border-radius: 5px;
+	box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"] {
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	background-color: #f5f5f5;
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+button[type="submit"] {
+	background-color: #4CAF50;
+	color: #fff;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+
+button[type="submit"]:hover {
+	background-color: #3e8e41;
+}
+
+/* Item Information section styles */
+#item-name-display,
+#starting-price-display,
+#highest-bidder-display,
+#highest-bid-display {
+	font-weight: bold;
+	font-size: 18px;
+	margin: 0;
+}
+
+#highest-bidder-display {
+	color: #4CAF50;
+}
+
+#highest-bid-display {
+	color: #F44336;
+}
+
+/* Header styles */
+header {
+	background-color: #333;
+	color: #fff;
+	padding: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+header h1 {
+	margin: 0;
+	flex-grow: 1;
+}
+
+header form {
+	display: flex;
+	align-items: center;
+}
+
+header input[type="text"] {
+	flex-grow: 1;
+	margin-right: 10px;
+}
+
+/* Footer styles */
+footer {
+	background-color: #333;
+	color: #fff;
+	text-align: center;
+	padding: 10px;
+	margin-top: 20px;
+}
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.4-rc.1/web3.min.js"></script>
+<head>
+	<meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Auction DAPP</title>
+</head>
+<body>
+	<header>
+		<h1>Auction DAPP</h1>
+		<form>
+			<input type="text" onclick="getItem()" placeholder="Search...">
+			<button type="submit">Search</button>
+		</form>
+	</header>
+	<main>
+		<section>
+			<h2>Upload Item</h2>
+			<form>
+				<label for="item-name">Item Name:</label>
+				<input type="text" id="item-name" name="item-name" required>
+				<label for="starting-price">Starting Price:</label>
+				<input type="number" id="starting-price" name="starting-price" required>
+				<button type="submit">Start Auction</button>
+			</form>
+		</section>
+		<section>
+			<h2>Bid on Item</h2>
+			<form>
+                <label for="item-name">Item Name:</label>
+				<input type="text" id="item-name" name="item-name" required>
+				<label for="bid-amount">Bid Amount:</label>
+				<input type="number" id="bid-amount" name="bid-amount" required>
+				<button type="submit">Place A Bid</button>
+				<button type="submit">End Auction</button>
+			</form>
+		</section>
+		<section>
+			<h2>Item Information</h2>
+			<p><strong>Item Name:</strong> <span id="item-name-display"></span></p>
+			<p><strong>Starting Price:</strong> <span id="starting-price-display"></span></p>
+			<p><strong>Current Highest Bidder:</strong> <span id="highest-bidder-display"></span></p>
+			<p><strong>Current Highest Bid:</strong> <span id="highest-bid-display"></span></p>
+		</section>
+	</main>
+	<footer>
+		<p>&copy; Auction DAPP</p>
+	</footer>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.4-rc.1/web3.min.js"></script>
+<script>
+/* To connect using MetaMask */
+async function connect() {
+ if (window.ethereum) {
+ 
+  await window.ethereum.request({ method: "eth_requestAccounts" });
+  window.web3 = new Web3(window.ethereum);
+  
+ } else {
+  console.log("No wallet");
+ }
+}
+</script>
+
+</body>
+</html>
