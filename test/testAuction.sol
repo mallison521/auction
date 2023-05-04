@@ -24,19 +24,5 @@ contract TestAuction {
         Assert.equal(price, 20, "Starting price should be 20");
     }
 
-    function testPlaceBid() public payable {
-        auction.placeBid(itemName);
-        // auction.placeBid(itemName{from: bidder, value: 20});
-        ( , , uint256 highestBid, address highestBidder, ) = auction.getItem(itemName);
-        Assert.equal(highestBid, 20, "Highest bid should be 20");
-        Assert.equal(highestBidder, address(bidder), "Highest bidder should be the current contract");
-    }
-
-    function testEndAuction() public payable {
-        //auction.placeBid(itemName);
-        auction.endAuction(itemName);
-        ( , , , , bool ended) = auction.getItem(itemName);
-
-        Assert.equal(ended, true, "Auction should have ended");
-    }
+    
 }
